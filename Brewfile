@@ -64,6 +64,7 @@ brew 'tmux'
 brew 'watch'
 brew 'wget'
 brew 'zsh'
+brew 'mas'
 
 # languages
 brew 'go'
@@ -90,3 +91,10 @@ brew 'git'
 brew 'hey'
 brew 'postgresql'
 brew 'vim', args: ['override-system-vi']
+
+# app store install
+
+mas 'Xcode', id: 497799835
+mas 'Pages', id: 409201541
+mas 'Numbers', id: 409203825
+mas 'Keynote', id: 409183694
