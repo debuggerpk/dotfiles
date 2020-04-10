@@ -26,12 +26,14 @@ cask 'skype'
 cask 'mattermost'
 cask 'slack'
 cask 'whatsapp'
+cask 'zoomus'
 
 # utilities
 cask 'appcleaner'
 cask 'gfxcardstatus'
 cask 'smcfancontrol'
 cask 'steam'
+cask 'the-unarchiver'
 cask 'transmission'
 
 ## formulaes
@@ -86,15 +88,16 @@ brew 'terraform'
 # devtools
 brew 'bazel'
 brew 'bfg'
-brew 'git-standup'
 brew 'git'
+brew 'git-standup'
+brew 'git-flow'
 brew 'hey'
 brew 'postgresql'
-brew 'vim', args: ['override-system-vi']
+brew 'vim' # args: ['override-system-vi']
 
-# app store install
+# app store install (each id is user specific)
 
-mas 'Xcode', id: 497799835
-mas 'Pages', id: 409201541
-mas 'Numbers', id: 409203825
-mas 'Keynote', id: 409183694
+# mas 'Xcode', id: 497799835
+# mas 'Pages', id: 409201541
+# mas 'Numbers', id: 409203825
+# mas 'Keynote', id: 409183694
