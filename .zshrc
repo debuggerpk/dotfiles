@@ -59,6 +59,10 @@ if zplug check zsh-users/zsh-history-substring-search; then
   bindkey '^[[B' history-substring-search-down
 fi
 
+# completions
+## assuming zsh installs 
+for f (/usr/local/share/zsh/site-functions/**/*(N.))  . $f
+
 # path
 path+=(
   "$HOME/.yarn/bin"
