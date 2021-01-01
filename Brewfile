@@ -73,7 +73,7 @@ brew 'go'
 brew 'nvm'
 brew 'pyenv-virtualenv'
 brew 'pyenv'
-brew 'rust'
+# brew 'rust' # removed in favor of rustup script
 
 # cloud tools
 brew 'awscli'
@@ -94,10 +94,3 @@ brew 'git-flow'
 brew 'hey'
 brew 'postgresql'
 brew 'vim' # args: ['override-system-vi']
-
-# app store install (each id is user specific)
-
-# mas 'Xcode', id: 497799835
-# mas 'Pages', id: 409201541
-# mas 'Numbers', id: 409203825
-# mas 'Keynote', id: 409183694

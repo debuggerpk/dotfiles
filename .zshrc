@@ -30,6 +30,7 @@ source ~/.zplug/init.zsh
 
 # load plugins
 zplug "cpitt/zsh-dotenv",                       from:github
+zplug "lukechilds/zsh-nvm",                     from:github
 zplug "knu/zsh-manydots-magic",                 use:"manydots-magic"
 zplug "tarruda/zsh-autosuggestions",            defer:0
 zplug "zsh-users/zsh-completions",              from:github
@@ -63,8 +64,12 @@ fi
 ## assuming zsh installs 
 for f (/usr/local/share/zsh/site-functions/**/*(N.))  . $f
 
+# global variables
+CLOUDSDK_PYTHON="/usr/bin/python3"
+
 # path
 path+=(
   "$HOME/.yarn/bin"
   "$HOME/.config/yarn/global/node_modules/.bin"
+  "$HOME/.cargo/bin"
 )
