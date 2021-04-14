@@ -23,7 +23,7 @@ eval "$(pyenv virtualenv-init -)"
 
 # completions
 ## assuming zsh installs 
-for f (/usr/local/share/zsh/site-functions/**/*(N.))  . $f
+for f (/usr/local/share/zsh/site-functions/*(.N)) source $f
 
 # path
 path+=(
