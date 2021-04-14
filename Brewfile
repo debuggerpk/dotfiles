@@ -26,7 +26,7 @@ cask 'skype'
 cask 'mattermost'
 cask 'slack'
 cask 'whatsapp'
-cask 'zoomus'
+cask 'zoom'
 
 # utilities
 cask 'appcleaner'
@@ -56,24 +56,23 @@ brew 'webp'
 brew 'zlib'
 
 # system tools
+brew 'bat'
 brew 'colordiff'
 brew 'fasd'
 brew 'htop'
 brew 'imagemagick'
 brew 'jq'
+brew 'mas'
 brew 'starship'
 brew 'tmux'
 brew 'watch'
 brew 'wget'
 brew 'zsh'
-brew 'mas'
 
 # languages
 brew 'go'
-brew 'nvm'
 brew 'pyenv-virtualenv'
 brew 'pyenv'
-# brew 'rust' # removed in favor of rustup script
 
 # cloud tools
 brew 'awscli'
@@ -84,6 +83,7 @@ brew 'kubecfg'
 brew 'kubectx'
 brew 'doctl'
 brew 'terraform'
+brew 'terraformer'
 
 # devtools
 brew 'bazel'

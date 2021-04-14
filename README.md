@@ -1,7 +1,8 @@
 # dotfiles
 
 ## Quick Install
-This is the base .zshrc intended to be used with OSX. For quick intallation
+
+[debuggerpk](github.com/debuggerpk) dotfiles, meant as a reference for everybody at [Breu](github.com/getbreu).
 
 ```bash
  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/getbreu/dotfiles/master/setup.sh)"

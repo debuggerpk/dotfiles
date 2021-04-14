@@ -1,29 +1,36 @@
 # global variables
 export CLICOLOR=1
-export LSCOLORS=GxFxCxDxBxegedabagaced
-export NVM_DIR="$HOME/.nvm"
-export KEYTIMEOUT=1
 export CLOUDSDK_PYTHON='/usr/bin/python3'
+export KEYTIMEOUT=1
+export LSCOLORS=GxFxCxDxBxegedabagaced
+export NVM_AUTO_USE=true
+export NVM_DIR="$HOME/.nvm"
 
 # history
 export HISTSIZE=10000
 export SAVEHIST=10000
 setopt SHARE_HISTORY
 
+# Auto Complete
+autoload -Uz compinit && compinit
+
 # node
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # python
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
-# starship
-eval "$(starship init zsh)"
+# completions
+## assuming zsh installs 
+for f (/usr/local/share/zsh/site-functions/**/*(N.))  . $f
 
-
-# Auto Complete
-autoload -U compinit && compinit
+# path
+path+=(
+  "$HOME/.yarn/bin"
+  "$HOME/.config/yarn/global/node_modules/.bin"
+  "$HOME/.cargo/bin"
+)
 
 # load zplug
 source ~/.zplug/init.zsh
@@ -32,10 +39,10 @@ source ~/.zplug/init.zsh
 zplug "cpitt/zsh-dotenv",                       from:github
 zplug "lukechilds/zsh-nvm",                     from:github
 zplug "knu/zsh-manydots-magic",                 use:"manydots-magic"
-zplug "tarruda/zsh-autosuggestions",            defer:0
 zplug "zsh-users/zsh-completions",              from:github
 zplug "zsh-users/zsh-history-substring-search", defer:1
 zplug "zsh-users/zsh-syntax-highlighting",      defer:1
+zplug "zsh-users/zsh-autosuggestions",          defer:1
 
 # zplug init
 if ! zplug check --verbose; then
@@ -60,16 +67,6 @@ if zplug check zsh-users/zsh-history-substring-search; then
   bindkey '^[[B' history-substring-search-down
 fi
 
-# completions
-## assuming zsh installs 
-for f (/usr/local/share/zsh/site-functions/**/*(N.))  . $f
-
-# global variables
-CLOUDSDK_PYTHON="/usr/bin/python3"
-
-# path
-path+=(
-  "$HOME/.yarn/bin"
-  "$HOME/.config/yarn/global/node_modules/.bin"
-  "$HOME/.cargo/bin"
-)
+# starship
+eval "$(starship init zsh)"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
