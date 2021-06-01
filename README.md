@@ -5,7 +5,7 @@
 [debuggerpk](github.com/debuggerpk) dotfiles, meant as a reference for everybody at [Breu](github.com/getbreu).
 
 ```bash
- /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/getbreu/dotfiles/master/setup.sh)"
+ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/breuHQ/dotfiles/master/setup.sh)"
 ```
 
 ## TODO
