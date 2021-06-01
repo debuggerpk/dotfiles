@@ -6,7 +6,7 @@ curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/instal
 source ~/.zplug/init.zsh
 
 ## clone dotfiles to $HOME/dotfiles
-git clone git@github.com:getbreu/dotfiles.git ~/dotfiles
+git clone git@github.com:breuHQ/dotfiles.git ~/dotfiles
 
 ## Backup Existing .zshrc, and create a link to ~/dotfiles/.zshrc in $HOME
 [ -s "${HOME}/.zshrc" ] && mv ${HOME}/.zshrc ${HOME}/.zshrc.bck
