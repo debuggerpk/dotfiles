@@ -78,27 +78,37 @@ brew 'go'
 brew 'pyenv-virtualenv'
 brew 'pyenv'
 
-# cloud tools
+# cloud 
+
+## providers
 brew 'aws-elasticbeanstalk'
 brew 'awscli'
 brew 'azure-cli'
 brew 'doctl'
+
+## infra
+brew 'buildpacks/tap/pack'
 brew 'infracost'
 brew 'kubernetes-cli'
 brew 'kubecfg'
 brew 'kubectx'
 brew 'kustomize'
 brew 'k3d'
+brew 'helm'
+brew 'istioctl'
 brew 'terraformer'
 brew 'warrensbox/tap/tfswitch'
 
-# devtools
+# dev tools
 brew 'bazel'
 brew 'bfg'
+brew 'gh'
 brew 'git-flow'
 brew 'git-standup'
 brew 'git'
+brew 'goaccess'
 brew 'hey'
+brew 'hyperfine'
 brew 'mykolaharmash/git-jump/git-jump'
 brew 'nvie/tap/git-toolbelt'
 brew 'postgresql'
