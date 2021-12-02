@@ -20,6 +20,7 @@ cask 'openinterminal'
 cask 'sublime-merge'
 cask 'sublime-text'
 cask 'visual-studio-code'
+cask 'wireshark'
 
 # office
 # cask 'microsoft-office'
@@ -115,4 +116,5 @@ brew 'hyperfine'
 brew 'mykolaharmash/git-jump/git-jump'
 brew 'nvie/tap/git-toolbelt'
 brew 'postgresql'
+brew 'tcpdump'
 brew 'vim' # args: ['override-system-vi']

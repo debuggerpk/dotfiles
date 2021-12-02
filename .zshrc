@@ -30,6 +30,7 @@ path+=(
   "$HOME/.yarn/bin"
   "$HOME/.config/yarn/global/node_modules/.bin"
   "$HOME/.cargo/bin"
+  "$HOME/go/bin"
 )
 
 # load zplug
@@ -70,3 +71,5 @@ fi
 # starship
 eval "$(starship init zsh)"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# iterm integration
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
