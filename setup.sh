@@ -22,7 +22,7 @@ echo "Homebrew Packages"
 CURRENT_DIR=`pwd`
 export CLOUDSDK_PYTHON='/usr/bin/python3'
 cd ${HOME}/dotfiles
-brew bundle
+brew bundle -v
 cd ${CURRENT_DIR}
 
 ## install nvm

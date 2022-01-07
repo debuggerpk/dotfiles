@@ -24,7 +24,7 @@ cask 'wireshark'
 
 # office
 # cask 'microsoft-office'
-cask 'google-backup-and-sync'
+cask 'google-drive'
 
 # messaging
 cask 'skype'
