@@ -11,8 +11,10 @@ export HISTSIZE=10000
 export SAVEHIST=10000
 setopt SHARE_HISTORY
 
-# Auto Complete
+# Zsh Utilities
 autoload -Uz compinit && compinit
+autoload -U +X bashcompinit && bashcompinit
+autoload -U zmv
 
 # node
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -73,3 +75,4 @@ eval "$(starship init zsh)"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 # iterm integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+complete -o nospace -C /usr/local/bin/terraform terraform
