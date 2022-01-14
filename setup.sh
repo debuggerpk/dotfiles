@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 ## install homebrew
 echo "Install Homebrew (https://brew.sh)"
-/bin/bash <(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 ## install & activate zplug
 echo "Install zplug (ZSH plguin manager)"
