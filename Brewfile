@@ -119,7 +119,7 @@ brew 'goaccess'
 brew 'hey'
 brew 'hyperfine'
 brew 'mykolaharmash/git-jump/git-jump'
+brew 'neovim'
 brew 'nvie/tap/git-toolbelt'
 brew 'postgresql'
 brew 'tcpdump'
-brew 'vim' # args: ['override-system-vi']
