@@ -24,8 +24,14 @@ eval "$(pyenv init --path)"
 eval "$(pyenv virtualenv-init -)"
 
 # completions
-## assuming zsh installs 
-for f (/usr/local/share/zsh/site-functions/*(.N)) source $f
+
+## brew completions 
+for f in /usr/local/share/zsh/site-functions/**/*; source $f
+## gcloud comletions
+source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+## terraform completions
+complete -o nospace -C /usr/local/bin/terraform terraform
+
 
 # path
 path+=(
@@ -72,13 +78,8 @@ fi
 
 # starship
 eval "$(starship init zsh)"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 # iterm integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-# terraform completions
-complete -o nospace -C /usr/local/bin/terraform terraform
-
 # aliases
 alias vi="nvim"
 alias vim="nvim"
