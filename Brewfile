@@ -78,6 +78,7 @@ brew 'tmux'
 brew 'watch'
 brew 'wget'
 brew 'zsh'
+brew 'zsh-completions'
 
 # languages
 brew 'go'
