@@ -137,7 +137,7 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'editorconfig/editorconfig-vim'
 
 " https://github.com/Mofiqul/dracula.nvim
-Plug 'Mofiqul/dracula.nvim'
+Plug 'dracula/vim', { 'as': 'dracula' }
 
 " Initialize plugin system
 call plug#end()
@@ -154,6 +154,7 @@ set colorcolumn=120
 colorscheme dracula
 
 " Plugin settings
+colorscheme dracula
 let g:airline_theme='dracula'
 let g:airline_powerline_fonts=1
 let g:blamer_enabled = 1
