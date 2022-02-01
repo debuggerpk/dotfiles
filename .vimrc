@@ -1,161 +1,76 @@
-" (N)Vim Configuration File
-" vim  : place in $HOME/.vimrc
-" nvim : place in $HOME/.config/nvim/init.vim
-" $ ln -s $HOME/.config/nvim/init.vim $HOME/.vimrc
-" General settings
-" https://learnvimscriptthehardway.stevelosh.com/
-" ---------------------------------------------------------------------------
-" drop vi support - kept for vim compatibility but not needed for nvim
-" Probably not needed with Vim 8+
-"set nocompatible
+" =============== General Config ===============
 
-" Search recursively downward from CWD; provides TAB completion for filenames
-" e.g., `:find vim* <TAB>`
-set path+=**
+set autoindent                              " indent new lines automatically
+set autoread                                " reload files changed outside of Vim not currently modified in Vim (needs below)
+set backspace=indent,eol,start              " make Backspace work like Delete
+set clipboard=unnamed                       " use system clipboard
+set encoding=utf-8                          " set unicode
+set foldlevelstart=1                        " start folding at level 1
+set foldmethod=indent                       " fold by indentation
+set foldnestmax=1                           " don't fold nested folds
+set hlsearch incsearch ignorecase smartcase " highlight search terms
+set laststatus=2 statusline=%F              " show file name in status bar
+set modelines=0                             " number of lines at the beginning and end of files checked for file-specific vars
+set nobackup                                " don't create `filename~` backups
+set noswapfile                              " don't create temp files
+set number                                  " display line numbers
+set path+=**                                " search recursively downward from CWD; provides TAB completion for filenames
+set relativenumber                          " display line numbers relative to current line
+set scrolloff=2                             " scroll 2 lines at a time
+set showmatch                               " show matching brackets
+set showmode showcmd                        " show command mode
+set wildmenu wildmode=list:longest,full     " http://stackoverflow.com/questions/9511253/how-to-effectively-use-vim-wildmenu
 
-" number of lines at the beginning and end of files checked for file-specific vars
-set modelines=0
-
-" reload files changed outside of Vim not currently modified in Vim (needs below)
-set autoread
-
-" http://stackoverflow.com/questions/2490227/how-does-vims-autoread-work#20418591
-au FocusGained,BufEnter * :silent! !
-
-" use Unicode
-set encoding=utf-8
-
-" errors flash screen rather than emit beep
-set visualbell
-
-" make Backspace work like Delete
-set backspace=indent,eol,start
-
-" don't create `filename~` backups
-set nobackup
-
-" don't create temp files
-set noswapfile
-
-" line numbers and distances
-set relativenumber 
-set number 
-
-" number of lines offset when jumping
-set scrolloff=2
-
-" Tab key enters 2 spaces
-" To enter a TAB character when `expandtab` is in effect,
-" CTRL-v-TAB
-set expandtab tabstop=2 shiftwidth=2 softtabstop=2 
-
-" Indent new line the same as the preceding line
-set autoindent
-
-" statusline indicates insert or normal mode
-set showmode showcmd
-
-" make scrolling and painting fast
-" ttyfast kept for vim compatibility but not needed for nvim
-set ttyfast lazyredraw
-
-" highlight matching parens, braces, brackets, etc
-set showmatch
-
-" http://vim.wikia.com/wiki/Searching
-set hlsearch incsearch ignorecase smartcase
-
-" As opposed to `wrap`
-"set nowrap
-
-" http://vim.wikia.com/wiki/Set_working_directory_to_the_current_file
-set autochdir
-
-" open new buffers without saving current modifications (buffer remains open)
-set hidden
-
-" http://stackoverflow.com/questions/9511253/how-to-effectively-use-vim-wildmenu
-set wildmenu wildmode=list:longest,full
-
-" StatusLine always visible, display full path
-" http://learnvimscriptthehardway.stevelosh.com/chapters/17.html
-set laststatus=2 statusline=%F
-
-" Use system clipboard
-" http://vim.wikia.com/wiki/Accessing_the_system_clipboard
-" for linux
-"set clipboard=unnamedplus
-" for macOS
-set clipboard=unnamed
-
-" Folding
-" https://vim.fandom.com/wiki/Folding
-" https://vim.fandom.com/wiki/All_folds_open_when_opening_a_file
-" https://stackoverflow.com/questions/8316139/how-to-set-the-default-to-unfolded-when-you-open-a-file
-set foldmethod=indent
-set foldnestmax=1
-set foldlevelstart=1
+au FocusGained,BufEnter * :silent! !        " don't print messages when switching buffers, http://stackoverflow.com/questions/2490227/how-does-vims-autoread-work#20418591
 
 " netrw and vim-vinegar
-let g:netrw_browse_split = 3
+" let g:netrw_browse_split = 3
 
-" Plugins, syntax, and colors
-" ---------------------------------------------------------------------------
-" vim-plug
-" https://github.com/junegunn/vim-plug
-" Specify a directory for plugins
-" - For Neovim: ~/.local/share/nvim/plugged
-" - Avoid using standard Vim directory names like 'plugin'
+" ================== Plugins ==================
+
 call plug#begin('~/.local/share/nvim/plugged')
 
-" Make sure to use single quotes
-" Install with `:PlugInstall`
-
-" https://github.com/vim-airline/vim-airline
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-
-" https://github.com/tpope/vim-commentary
-Plug 'tpope/vim-commentary'
-
-" https://github.com/tpope/vim-fugitive
-Plug 'tpope/vim-fugitive'
-
-" https://github.com/tpope/vim-surround
-Plug 'tpope/vim-surround'
-
-" https://github.com/tpope/vim-vinegar
-Plug 'tpope/vim-vinegar'
-
-" https://github.com/APZelos/blamer.nvim
 Plug 'APZelos/blamer.nvim'
-
-" https://github.com/ycm-core/YouCompleteMe
-Plug 'Valloric/YouCompleteMe'
-
-" https://github.com/editorconfig/editorconfig-vim
-Plug 'editorconfig/editorconfig-vim'
-
-" https://github.com/Mofiqul/dracula.nvim
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'editorconfig/editorconfig-vim'
+Plug 'ryanoasis/vim-devicons'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-vinegar'
+Plug 'Valloric/YouCompleteMe'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
 
-" Initialize plugin system
 call plug#end()
 
-syntax enable
+" ================== Colors & Theme ==================
 
-" Neovim only
-set termguicolors 
+syntax enable                               " enable syntax highlighting    
+set termguicolors                           " use terminal colors
+colorscheme dracula                         " use dracula colorscheme
 
-" Show character column
-set colorcolumn=120
-
-" Dracula Theme
-colorscheme dracula
+" ================== Plugins Config ==================
 
 " Plugin settings
-colorscheme dracula
-let g:airline_theme='dracula'
-let g:airline_powerline_fonts=1
-let g:blamer_enabled = 1
-let g:blamer_date_format = '%e %b %Y'
+
+" Airline
+let g:airline_theme='dracula'               " use dracula theme
+let g:airline_powerline_fonts=1             " use powerline fonts
+
+" Blamer
+let g:blamer_enabled = 1                    " enable blamer
+let g:blamer_date_format = '%e %b %Y'       " use date format
+
+" NerdTree
+let g:NERDTreeShowHidden = 1
+let g:NERDTreeDirArrows = 1
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeIgnore = []
+let g:NERDTreeStatusline = ''
+
+" https://stackoverflow.com/questions/5545082/making-nerdtree-work-as-expected/61039352#61039352
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | wincmd p | ene | exe 'NERDTree' argv()[0] | endif
+
+map <silent> <C-n> :NERDTreeFocus<CR>
