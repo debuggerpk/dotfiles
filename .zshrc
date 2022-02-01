@@ -11,7 +11,6 @@ export HISTSIZE=10000
 export SAVEHIST=10000
 setopt SHARE_HISTORY
 
-
 # zsh utilities
 if type brew &>/dev/null
 then
@@ -36,6 +35,7 @@ path+=(
   "$HOME/.config/yarn/global/node_modules/.bin"
   "$HOME/.cargo/bin"
   "$HOME/go/bin"
+  "$HOME/.krew/bin"
 )
 
 # load zplug

@@ -38,7 +38,7 @@ set nobackup
 set noswapfile
 
 " line numbers and distances
-" set relativenumber 
+set relativenumber 
 set number 
 
 " number of lines offset when jumping
@@ -111,11 +111,15 @@ call plug#begin('~/.local/share/nvim/plugged')
 " Make sure to use single quotes
 " Install with `:PlugInstall`
 
-" https://github.com/itchyny/lightline.vim
-Plug 'itchyny/lightline.vim'
+" https://github.com/vim-airline/vim-airline
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " https://github.com/tpope/vim-commentary
 Plug 'tpope/vim-commentary'
+
+" https://github.com/tpope/vim-fugitive
+Plug 'tpope/vim-fugitive'
 
 " https://github.com/tpope/vim-surround
 Plug 'tpope/vim-surround'
@@ -126,8 +130,12 @@ Plug 'tpope/vim-vinegar'
 " https://github.com/APZelos/blamer.nvim
 Plug 'APZelos/blamer.nvim'
 
+" https://github.com/ycm-core/YouCompleteMe
+Plug 'Valloric/YouCompleteMe'
+
 " https://github.com/editorconfig/editorconfig-vim
 Plug 'editorconfig/editorconfig-vim'
+
 " https://github.com/Mofiqul/dracula.nvim
 Plug 'Mofiqul/dracula.nvim'
 
@@ -135,28 +143,18 @@ Plug 'Mofiqul/dracula.nvim'
 call plug#end()
 
 syntax enable
+
 " Neovim only
 set termguicolors 
+
+" Show character column
+set colorcolumn=120
 
 " Dracula Theme
 colorscheme dracula
 
-
-" Show character column
-set colorcolumn=80
-
-" lightline config - add file 'absolutepath'
-" Delete colorscheme line below if using Dark scheme
-
-let g:lightline = {
-      \ 'colorscheme': 'PaperColor_light',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'absolutepath', 'modified' ] ]
-      \ }
-      \ }
-
+" Plugin settings
+let g:airline_theme='dracula'
+let g:airline_powerline_fonts=1
 let g:blamer_enabled = 1
-" %a is the day of week, in case it's needed
 let g:blamer_date_format = '%e %b %Y'
-highlight Blamer guifg=darkorange

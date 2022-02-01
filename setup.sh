@@ -25,6 +25,17 @@ cd ${HOME}/dotfiles
 brew bundle -v
 cd ${CURRENT_DIR}
 
+## install krew (kubectl plugin manager)
+(
+  set -x; cd "$(mktemp -d)" &&
+  OS="$(uname | tr '[:upper:]' '[:lower:]')" &&
+  ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')" &&
+  KREW="krew-${OS}_${ARCH}" &&
+  curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/${KREW}.tar.gz" &&
+  tar zxvf "${KREW}.tar.gz" &&
+  ./"${KREW}" install krew
+)
+
 ## install nvm
 echo "Node/Node Version Manager"
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
@@ -47,10 +58,17 @@ cargo install cargo-bloat \
   cargo-watch \
   cross
 
-# install vim plug
+# install vim
+
+## install vim-plug
 echo "Install Vim Plug: The VIM Plugin Manager"
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+## copy .vimrc
+mkdir -p ~/.config/nvim
+ln -s ~/.dotfiles/.vimrc ~/.config/nvim/init.vim
+nvim +'PlugInstall --sync' +'PlugUpdate' +qa
 
 ## adding shell integrations for iterm2
 echo "Adding shell integrations for iterm2"
