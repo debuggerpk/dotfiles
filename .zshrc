@@ -1,3 +1,7 @@
+# Fig pre block. Keep at the top of this file.
+export PATH="${PATH}:${HOME}/.local/bin"
+eval "$(fig init zsh pre)"
+
 # global variables
 export CLICOLOR=1
 export CLOUDSDK_PYTHON='/usr/bin/python3'
@@ -28,6 +32,10 @@ autoload -U zmv
 eval "$(pyenv init --path)"
 eval "$(pyenv virtualenv-init -)"
 
+# go
+export GOPATH=$HOME/go
+export GOROOT="$(brew --prefix golang)/libexec"
+
 
 # path
 path+=(
@@ -36,6 +44,7 @@ path+=(
   "$HOME/.cargo/bin"
   "$HOME/go/bin"
   "$HOME/.krew/bin"
+  "$HOME/.poetry/bin"
 )
 
 # load zplug
@@ -87,3 +96,7 @@ alias vim="nvim"
 
 # starship
 eval "$(starship init zsh)"
+
+# Fig post block. Keep at the bottom of this file.
+eval "$(fig init zsh post)"
+

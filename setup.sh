@@ -25,6 +25,9 @@ cd ${HOME}/dotfiles
 brew bundle -v
 cd ${CURRENT_DIR}
 
+## python poetry
+curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+
 ## install krew (kubectl plugin manager)
 (
   set -x; cd "$(mktemp -d)" &&

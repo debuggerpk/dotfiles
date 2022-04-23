@@ -30,18 +30,28 @@ au FocusGained,BufEnter * :silent! !        " don't print messages when switchin
 
 call plug#begin('~/.local/share/nvim/plugged')
 
-Plug 'APZelos/blamer.nvim'
-Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'editorconfig/editorconfig-vim'
-Plug 'ryanoasis/vim-devicons'
-Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-vinegar'
-Plug 'Valloric/YouCompleteMe'
+" Powerline
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
+
+" Git
+Plug 'APZelos/blamer.nvim'                                  " git blame for current line
+Plug 'tpope/vim-fugitive'                                   " git support
+
+" Visuals and Colors
+Plug 'dracula/vim', { 'as': 'dracula' }                     " Dracula theme
+Plug 'editorconfig/editorconfig-vim'                        " .editorconfig support
+Plug 'tpope/vim-commentary'                                 " comment out lines.
+Plug 'tpope/vim-surround'                                   " everything you need to make your life easier with surround
+Plug 'tpope/vim-vinegar'                                    " NERDTree alternative
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " tree-sitter
+Plug 'p00f/nvim-ts-rainbow'                                 " rainbow colors for tree-sitter
+Plug 'lukas-reineke/indent-blankline.nvim'                  " add indentation guides
+
+" Editor
+Plug 'Valloric/YouCompleteMe'                               " code completion
+
+
 
 call plug#end()
 
@@ -55,6 +65,36 @@ colorscheme dracula                         " use dracula colorscheme
 
 " Plugin settings
 
+" netrw
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 3
+
+" nvim-tree (tree-sitter) and modules
+lua <<EOF
+require("nvim-treesitter.configs").setup {
+  ensure_installed = "all",
+  highlight = {
+    enable = true,
+  },
+  rainbow = {
+    enable = true,
+    extended_mode = true,
+  },
+}
+
+vim.opt.list = true
+vim.opt.listchars:append("eol:↴")
+
+require("indent_blankline").setup {
+    show_current_context = true,
+    show_current_context_start = true,
+}
+EOF
+
+lua <<EOF
+EOF
+
+
 " Airline
 let g:airline_theme='dracula'               " use dracula theme
 let g:airline_powerline_fonts=1             " use powerline fonts
@@ -64,13 +104,13 @@ let g:blamer_enabled = 1                    " enable blamer
 let g:blamer_date_format = '%e %b %Y'       " use date format
 
 " NerdTree
-let g:NERDTreeShowHidden = 1
-let g:NERDTreeDirArrows = 1
-let g:NERDTreeMinimalUI = 1
-let g:NERDTreeIgnore = []
-let g:NERDTreeStatusline = ''
+@REM let g:NERDTreeShowHidden = 1
+@REM let g:NERDTreeDirArrows = 1
+@REM let g:NERDTreeMinimalUI = 1
+@REM let g:NERDTreeIgnore = []
+@REM let g:NERDTreeStatusline = ''
 
-" https://stackoverflow.com/questions/5545082/making-nerdtree-work-as-expected/61039352#61039352
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | wincmd p | ene | exe 'NERDTree' argv()[0] | endif
+@REM " https://stackoverflow.com/questions/5545082/making-nerdtree-work-as-expected/61039352#61039352
+@REM autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | wincmd p | ene | exe 'NERDTree' argv()[0] | endif
 
-map <silent> <C-n> :NERDTreeFocus<CR>
+@REM map <silent> <C-n> :NERDTreeFocus<CR>
