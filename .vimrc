@@ -49,7 +49,8 @@ Plug 'p00f/nvim-ts-rainbow'                                 " rainbow colors for
 Plug 'lukas-reineke/indent-blankline.nvim'                  " add indentation guides
 
 " Editor
-Plug 'Valloric/YouCompleteMe'                               " code completion
+" Plug 'Valloric/YouCompleteMe'                               " code completion
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 
 
@@ -89,9 +90,6 @@ require("indent_blankline").setup {
     show_current_context = true,
     show_current_context_start = true,
 }
-EOF
-
-lua <<EOF
 EOF
 
 

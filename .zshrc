@@ -1,14 +1,8 @@
-# Fig pre block. Keep at the top of this file.
-export PATH="${PATH}:${HOME}/.local/bin"
-eval "$(fig init zsh pre)"
-
 # global variables
 export CLICOLOR=1
 export CLOUDSDK_PYTHON='/usr/bin/python3'
 export KEYTIMEOUT=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
-export NVM_AUTO_USE=true
-export NVM_DIR="$HOME/.nvm"
 
 # history
 export HISTSIZE=10000
@@ -26,7 +20,12 @@ autoload -U +X bashcompinit && bashcompinit
 autoload -U zmv
 
 # node
+export NVM_AUTO_USE=true
+export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# bun
+export BUN_INSTALL="/Users/jay/.bun"
 
 # python
 eval "$(pyenv init --path)"
@@ -42,12 +41,11 @@ path+=(
   "$HOME/.yarn/bin"
   "$HOME/.config/yarn/global/node_modules/.bin"
   "$HOME/.cargo/bin"
-  "$HOME/go/bin"
-  "$HOME/.krew/bin"
   "$HOME/.poetry/bin"
+  "$BUN_INSTALL/bin"
+  "$GOPATH/bin"
 )
 
-# load zplug
 source ~/.zplug/init.zsh
 
 # load plugins
@@ -86,6 +84,8 @@ fi
 source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 ## terraform completions
 complete -o nospace -C /usr/local/bin/terraform terraform
+## bun completions
+[ -s "/Users/jay/.bun/_bun" ] && source "/Users/jay/.bun/_bun"
 
 # iterm integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
@@ -93,10 +93,9 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 # aliases
 alias vi="nvim"
 alias vim="nvim"
+alias dkrup="docker-compose up"
+alias dkrdn="docker-compose down"
+alias ls="lsd"
 
 # starship
 eval "$(starship init zsh)"
-
-# Fig post block. Keep at the bottom of this file.
-eval "$(fig init zsh post)"
-
