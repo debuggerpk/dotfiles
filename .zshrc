@@ -19,7 +19,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # bun
-export BUN_INSTALL="/Users/jay/.bun"
+export BUN_INSTALL="$HOME/.bun"
 
 # python
 eval "$(pyenv init --path)"
@@ -29,14 +29,18 @@ eval "$(pyenv virtualenv-init -)"
 export GOPATH=$HOME/go
 export GOROOT="$(brew --prefix golang)/libexec"
 
+# krew
+export KREW_ROOT="${HOME}/.krew"
+
 
 # path
 path+=(
-  "$HOME/.yarn/bin"
-  "$HOME/.cargo/bin"
-  "$HOME/.poetry/bin"
-  "$BUN_INSTALL/bin"
-  "$GOPATH/bin"
+  "$HOME/.yarn/bin" # yarn
+  "$HOME/.cargo/bin" # rust
+  "$HOME/.local/bin" # poetry
+  "$BUN_INSTALL/bin" # bun
+  "$GOPATH/bin" # go
+  "$KREW_ROOT/bin" # krew
 )
 
 source ~/.zplug/init.zsh
@@ -85,11 +89,12 @@ complete -o nospace -C /usr/local/bin/terraform terraform
 ## bun completions
 [ -s "/Users/jay/.bun/_bun" ] && source "/Users/jay/.bun/_bun"
 
-# iterm integration
-if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
-##### WHAT YOU WANT TO DISABLE FOR WARP - BELOW
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-##### WHAT YOU WANT TO DISABLE FOR WARP - ABOVE
+# warp terminal
+if [[ $TERM_PROGRAM != "WarpTerminal" ]]; 
+then
+  test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+else
+  SPACESHIP_PROMPT_ASYNC=FALSE
 fi
 
 # aliases
@@ -103,3 +108,4 @@ alias cd="z"
 # starship
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
+

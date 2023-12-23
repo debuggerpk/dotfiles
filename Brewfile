@@ -2,7 +2,6 @@
 tap 'homebrew/cask'
 tap 'homebrew/cask-fonts'
 tap 'homebrew/cask-versions'
-tap 'helix-editor/helix'
 
 
 ## casks
@@ -113,6 +112,7 @@ brew 'warrensbox/tap/tfswitch'
 
 # dev tools
 brew 'bazel'
+brew 'bufbuild/buf/buf'
 brew 'bfg'
 brew 'deno'
 brew 'gh'
@@ -120,12 +120,14 @@ brew 'git-flow'
 brew 'git-standup'
 brew 'git'
 brew 'goaccess'
+brew 'helix'
 brew 'hey'
 brew 'hyperfine'
 brew 'mykolaharmash/git-jump/git-jump'
 brew 'neovim'
 brew 'ngrok'
 brew 'nvie/tap/git-toolbelt'
-brew 'postgresql'
 brew 'pnpm'
+brew 'postgresql'
 brew 'tcpdump'
+brew 'temporal'

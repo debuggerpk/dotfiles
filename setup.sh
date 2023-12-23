@@ -26,9 +26,19 @@ cd "${HOME}/dotfiles" || exit
 brew bundle -v
 cd "${CURRENT_DIR}" || exit
 
+## python pyenv
+echo "Python pyenv"
+eval "$(pyenv init --path)"
+eval "$(pyenv virtualenv-init -)"
+
+# pyenv install 3.11 & set it as global
+echo "Installing python 3.11 & setting it as global python version"
+pyenv install 3.11
+pyenv global 3.11
+
 ## python poetry
 echo "Python Poetry"
-curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+curl -sSL https://install.python-poetry.org | python3 -
 
 ## install krew (kubectl plugin manager)
 echo "Kubernetes Krew (Plugin Manager)"
@@ -44,14 +54,16 @@ echo "Kubernetes Krew (Plugin Manager)"
 
 ## install nvm
 echo "Node/Node Version Manager"
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 nvm install --lts --default
 
 # install rust
 echo "Rust"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 echo "Cargo Packages"
-cargo install cargo-bloat \
+cargo install \
+  bottom \
+  cargo-bloat \
   cargo-bump \
   cargo-chef \
   cargo-edit \
@@ -60,9 +72,14 @@ cargo install cargo-bloat \
   cargo-readme \
   cargo-release \
   cargo-strip \
+  cargo-update \
   cargo-wasi \
   cargo-watch \
-  cross
+  cross \
+  licensure \
+  mdbook \
+  procs \
+  xargo
 
 ## install vim-plug
 echo "Install Vim Plug: The VIM Plugin Manager"
