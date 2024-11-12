@@ -1,3 +1,4 @@
+echo "zsh: preparing ..."
 # global variables
 export CLICOLOR=1
 export CLOUDSDK_PYTHON='/usr/bin/python3'
@@ -9,9 +10,13 @@ export HISTSIZE=10000
 export SAVEHIST=10000
 setopt SHARE_HISTORY
 
+echo "zsh: bashcompinit, zmv ..."
+
 # zsh utilities
 autoload -U +X bashcompinit && bashcompinit
 autoload -U zmv
+
+echo "node: with nvm and bun ..."
 
 # node
 export NVM_AUTO_USE=true
@@ -21,17 +26,24 @@ export NVM_DIR="$HOME/.nvm"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 
+echo "python: with pyenv and pyenv-virtualenv ..."
+
 # python
 eval "$(pyenv init --path)"
 eval "$(pyenv virtualenv-init -)"
 
+echo "go: path & root, this requires internet ..."
+
 # go
 export GOPATH=$HOME/go
-export GOROOT="$(brew --prefix golang)/libexec"
+export GOROOT=/usr/local/opt/go/libexec
+
+echo "k8s: krew plugin manager .."
 
 # krew
 export KREW_ROOT="${HOME}/.krew"
 
+echo "zsh: updating path ..."
 
 # path
 path+=(
@@ -40,8 +52,11 @@ path+=(
   "$HOME/.local/bin" # poetry
   "$BUN_INSTALL/bin" # bun
   "$GOPATH/bin" # go
+  "$GOROOT/bin" # go
   "$KREW_ROOT/bin" # krew
 )
+
+echo "zsh: zplug ..."
 
 source ~/.zplug/init.zsh
 
@@ -75,6 +90,8 @@ if zplug check zsh-users/zsh-history-substring-search; then
   bindkey '^[[B' history-substring-search-down
 fi
 
+echo "zsh: loading completions from brew"
+
 # completions
 if type brew &>/dev/null
 then
@@ -82,20 +99,30 @@ then
   autoload -Uz compinit
   compinit
 fi
+
 ## gcloud comletions
 source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+
 ## terraform completions
 complete -o nospace -C /usr/local/bin/terraform terraform
+
+## nvm completions
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 ## bun completions
 [ -s "/Users/jay/.bun/_bun" ] && source "/Users/jay/.bun/_bun"
 
+echo "zsh: setting up prompt"
+
 # warp terminal
-if [[ $TERM_PROGRAM != "WarpTerminal" ]]; 
+if [[ $TERM_PROGRAM != "WarpTerminal" ]];
 then
   test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 else
   SPACESHIP_PROMPT_ASYNC=FALSE
 fi
+
+echo "zsh: handy aliases"
 
 # aliases
 alias vi="nvim"
@@ -105,7 +132,10 @@ alias dkrdn="docker-compose down"
 alias ls="lsd"
 alias cd="z"
 
+echo "zsh: finalazing .."
+
 # starship
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
+echo "happy coding ..."

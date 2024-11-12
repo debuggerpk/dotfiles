@@ -15,6 +15,9 @@ git clone git@github.com:debuggerpk/dotfiles.git ~/dotfiles
 [ -s "${HOME}/.zshrc" ] && mv" ${HOME}/.zshrc" "${HOME}/.zshrc.bck"
 ln -s "${HOME}/dotfiles/.zshrc" "${HOME}/.zshrc"
 
+## Setup GO
+export GOPATH=$HOME/go
+
 ## Prepare Development Environment
 echo "Preparing Development Environment"
 
