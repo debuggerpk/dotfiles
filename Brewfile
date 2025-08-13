@@ -1,33 +1,25 @@
 ## taps
-tap 'homebrew/cask'
-tap 'homebrew/cask-fonts'
-tap 'homebrew/cask-versions'
+# tap 'homebrew/cask'
+# tap 'homebrew/cask-fonts'
+# tap 'homebrew/cask-versions'
 
 
 ## casks
 # developer tools
-cask 'adoptopenjdk8'
-cask 'dash'
 cask 'docker'
 cask 'dotnet-sdk'
-cask 'firefox-developer-edition'
 cask 'github'
 cask 'google-chrome'
-cask 'google-cloud-sdk'
-cask 'iterm2'
 cask 'jetbrains-toolbox'
 cask 'menumeters'
 cask 'openinterminal'
-cask 'sublime-merge'
-cask 'sublime-text'
 cask 'visual-studio-code'
+cask 'zed'
 
 # office
-# cask 'microsoft-office'
 cask 'google-drive'
 
 # messaging
-cask 'skype'
 cask 'slack'
 cask 'whatsapp'
 cask 'zoom'
@@ -35,7 +27,6 @@ cask 'zoom'
 # utilities
 cask 'appcleaner'
 cask 'gfxcardstatus'
-cask 'smcfancontrol'
 cask 'steam'
 cask 'the-unarchiver'
 cask 'transmission'
@@ -66,13 +57,11 @@ brew 'zlib'
 brew 'bat'
 brew 'colordiff'
 brew 'dust'
-brew 'fasd'
 brew 'fzf'
 brew 'htop'
 brew 'imagemagick'
 brew 'jq'
 brew 'lsd'
-brew 'mas'
 brew 'starship'
 brew 'tmux'
 brew 'watch'
@@ -83,10 +72,8 @@ brew 'zsh-completions'
 
 # languages
 brew 'go'
-brew 'pyenv-virtualenv'
-brew 'pyenv'
 
-# cloud 
+# cloud
 
 ## providers
 brew 'aws-elasticbeanstalk'
@@ -123,11 +110,10 @@ brew 'goaccess'
 brew 'helix'
 brew 'hey'
 brew 'hyperfine'
-brew 'mykolaharmash/git-jump/git-jump'
+brew 'libpq'
 brew 'neovim'
 brew 'ngrok'
 brew 'nvie/tap/git-toolbelt'
 brew 'pnpm'
-brew 'postgresql'
 brew 'tcpdump'
 brew 'temporal'

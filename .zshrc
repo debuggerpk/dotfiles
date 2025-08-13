@@ -16,6 +16,12 @@ echo "zsh: bashcompinit, zmv ..."
 autoload -U +X bashcompinit && bashcompinit
 autoload -U zmv
 
+# homebrew
+echo "Enabling Homebrew and linking formulas"
+eval "$(/opt/homebrew/bin/brew shellenv)"
+export LDFLAGS="-L$(brew --prefix openssl)/lib"
+export CPPFLAGS="-I$(brew --prefix openssl)/include"
+
 echo "node: with nvm and bun ..."
 
 # node
@@ -26,17 +32,15 @@ export NVM_DIR="$HOME/.nvm"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 
-echo "python: with pyenv and pyenv-virtualenv ..."
+echo "python: with uv ..."
+source $HOME/.local/bin/env
 
 # python
-eval "$(pyenv init --path)"
-eval "$(pyenv virtualenv-init -)"
-
 echo "go: path & root, this requires internet ..."
 
 # go
 export GOPATH=$HOME/go
-export GOROOT=/usr/local/opt/go/libexec
+export GOROOT=/opt/homebrew/opt/go/libexec
 
 echo "k8s: krew plugin manager .."
 
@@ -104,7 +108,7 @@ fi
 source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 
 ## terraform completions
-complete -o nospace -C /usr/local/bin/terraform terraform
+# complete -o nospace -C /usr/local/bin/terraform terraform
 
 ## nvm completions
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -114,13 +118,7 @@ complete -o nospace -C /usr/local/bin/terraform terraform
 
 echo "zsh: setting up prompt"
 
-# warp terminal
-if [[ $TERM_PROGRAM != "WarpTerminal" ]];
-then
-  test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-else
-  SPACESHIP_PROMPT_ASYNC=FALSE
-fi
+
 
 echo "zsh: handy aliases"
 
@@ -139,3 +137,5 @@ eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
 echo "happy coding ..."
+
+. "$HOME/.local/bin/env"
