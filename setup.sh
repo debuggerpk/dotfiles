@@ -57,6 +57,10 @@ generate_ssh_key() {
     ssh-keygen -t ed25519 -C "$GIT_EMAIL" -f ~/.ssh/id_ed25519 -N ""
     echo "--> SSH key generated."
 
+    # Start the ssh-agent in the background and add the key
+    eval "$(ssh-agent -s)" >/dev/null
+    ssh-add ~/.ssh/id_ed25519
+
     if command -v pbcopy >/dev/null 2>&1; then
         pbcopy < ~/.ssh/id_ed25519.pub
         echo "--> Public key copied to clipboard."
@@ -86,7 +90,17 @@ install_homebrew() {
     else
         echo "--> Installing Homebrew..."
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    fi
+
+    # Detect and set the correct Homebrew path
+    if [ -x "/opt/homebrew/bin/brew" ]; then
+        # Apple Silicon
         eval "$(/opt/homebrew/bin/brew shellenv)"
+    elif [ -x "/usr/local/bin/brew" ]; then
+        # Intel Mac / Linux
+        eval "$(/usr/local/bin/brew shellenv)"
+    else
+        echo "--> WARNING: Homebrew not found in expected locations. You may need to add it to your PATH manually."
     fi
 }
 
@@ -144,7 +158,12 @@ install_cargo_packages() {
     local packages_file="${HOME}/dotfiles/cargo_packages.txt"
     echo "--> Installing Cargo packages from $packages_file..."
     if [ -f "$packages_file" ]; then
-        xargs cargo install < "$packages_file"
+        while read -r package || [[ -n "$package" ]]; do
+            # Skip empty lines
+            [ -z "$package" ] && continue
+            echo "--> Installing cargo package: $package"
+            cargo install "$package"
+        done < "$packages_file"
     else
         echo "--> WARNING: $packages_file not found. Skipping."
     fi
