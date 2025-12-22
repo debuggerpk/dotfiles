@@ -4,6 +4,8 @@ export CLICOLOR=1
 export CLOUDSDK_PYTHON='/usr/bin/python3'
 export KEYTIMEOUT=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
+export EDITOR=hx
+export VISUAL=${EDITOR}
 
 # history
 export HISTSIZE=10000
@@ -19,8 +21,8 @@ autoload -U zmv
 # homebrew
 echo "Enabling Homebrew and linking formulas"
 eval "$(/opt/homebrew/bin/brew shellenv)"
-export LDFLAGS="-L$(brew --prefix openssl)/lib"
-export CPPFLAGS="-I$(brew --prefix openssl)/include"
+# export LDFLAGS="-L$(brew --prefix openssl)/lib"
+# export CPPFLAGS="-I$(brew --prefix openssl)/include"
 
 echo "node: with nvm and bun ..."
 
@@ -36,9 +38,9 @@ echo "python: with uv ..."
 source $HOME/.local/bin/env
 
 # python
-echo "go: path & root, this requires internet ..."
 
 # go
+echo "go: path & root, this requires internet ..."
 export GOPATH=$HOME/go
 export GOROOT=/opt/homebrew/opt/go/libexec
 
@@ -123,12 +125,13 @@ echo "zsh: setting up prompt"
 echo "zsh: handy aliases"
 
 # aliases
-alias vi="nvim"
-alias vim="nvim"
+alias vi="hx"
+alias vim="hx"
 alias dkrup="docker-compose up"
 alias dkrdn="docker-compose down"
 alias ls="lsd"
 alias cd="z"
+alias terraform="tofu"
 
 echo "zsh: finalazing .."
 
@@ -139,3 +142,10 @@ eval "$(zoxide init zsh)"
 echo "happy coding ..."
 
 . "$HOME/.local/bin/env"
+
+# Added by Antigravity
+export PATH="/Users/ysf/.antigravity/antigravity/bin:$PATH"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/ysf/.lmstudio/bin"
+# End of LM Studio CLI section
