@@ -46,9 +46,25 @@ case "$REPLY" in
 esac
 
 ## clone dotfiles to $HOME/dotfiles
-# The script assumes you have already cloned the dotfiles repository.
-# If not, you can run this command manually:
-# git clone git@github.com:debuggerpk/dotfiles.git ~/dotfiles
+echo "--------------------------------------------------"
+echo "ACTION: Clone dotfiles repository"
+echo "--------------------------------------------------"
+echo "--> How do you want to clone? (s)sh, (h)ttps, (any other key to skip)"
+read -n 1 -r REPLY
+echo
+case "$REPLY" in
+  s|S)
+    echo "--> Cloning via SSH..."
+    git clone git@github.com:debuggerpk/dotfiles.git "${HOME}/dotfiles"
+    ;;
+  h|H)
+    echo "--> Cloning via HTTPS..."
+    git clone https://github.com/debuggerpk/dotfiles.git "${HOME}/dotfiles"
+    ;;
+  *)
+    echo "--> Skipping dotfiles clone."
+    ;;
+esac
 
 ## Backup Existing .zshrc, and create a link to ~/dotfiles/.zshrc in $HOME
 prompt_action "Link ~/.zshrc to dotfiles"
@@ -91,24 +107,6 @@ case "$REPLY" in
     ;;
   *)
     echo "--> Skipping Brewfile installation."
-    ;;
-esac
-
-## Python with uv
-prompt_action "Install Python with uv"
-case "$REPLY" in
-  y|Y)
-    echo "--> Installing uv..."
-    curl -LsSf https://astral.sh/uv/install.sh | sh
-    source "$HOME/.cargo/env" # uv is installed via cargo, so we source this
-    ;;
-  c|C)
-    echo "--> The command to be run is:"
-    echo "curl -LsSf https://astral.sh/uv/install.sh | sh"
-    echo "--> No other customization options available for this step."
-    ;;
-  *)
-    echo "--> Skipping uv installation."
     ;;
 esac
 
@@ -203,12 +201,30 @@ case "$REPLY" in
     ;;
 esac
 
+## Python with uv
+prompt_action "Install Python with uv"
+case "$REPLY" in
+  y|Y)
+    echo "--> Installing uv..."
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+    uv python install --global
+    ;;
+  c|C)
+    echo "--> The command to be run is:"
+    echo "curl -LsSf https://astral.sh/uv/install.sh | sh"
+    echo "--> No other customization options available for this step."
+    ;;
+  *)
+    echo "--> Skipping uv installation."
+    ;;
+esac
+
 ## Cloud Development
 prompt_action "Install Google Cloud SDK"
 case "$REPLY" in
   y|Y)
     echo "--> Installing Google Cloud SDK..."
-    brew install --cask google-cloud-sdk
+    brew install --cask google-cloud-sdk # should this be via brew?
     ;;
   *)
     echo "--> Skipping Google Cloud SDK installation."
