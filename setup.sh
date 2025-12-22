@@ -10,6 +10,53 @@ prompt_action() {
   echo
 }
 
+## Git Configuration
+echo "--- Git Configuration ---"
+echo "--> Enter your Git username:"
+read -r GIT_USERNAME
+git config --global user.name "$GIT_USERNAME"
+echo "--> Git username set to $GIT_USERNAME"
+
+echo "--> Enter your Git email:"
+read -r GIT_EMAIL
+git config --global user.email "$GIT_EMAIL"
+echo "--> Git email set to $GIT_EMAIL"
+
+## SSH Key Generation
+prompt_action "Generate a new SSH key for Git"
+case "$REPLY" in
+  y|Y)
+    echo "--> Generating a new SSH key..."
+    ssh-keygen -t ed25519 -C "$GIT_EMAIL" -f ~/.ssh/id_ed25519 -N ""
+    echo "--> SSH key generated."
+
+    if command -v pbcopy >/dev/null 2>&1; then
+      pbcopy < ~/.ssh/id_ed25519.pub
+      echo "--> Public key copied to clipboard."
+    elif command -v xclip >/dev/null 2>&1; then
+      xclip -selection clipboard < ~/.ssh/id_ed25519.pub
+      echo "--> Public key copied to clipboard."
+    else
+      echo "--> Please copy the following public key to your clipboard:"
+      cat ~/.ssh/id_ed25519.pub
+    fi
+
+    echo "--> Opening GitHub to add your new SSH key..."
+    if command -v open >/dev/null 2>&1; then
+      open "https://github.com/settings/keys"
+    elif command -v xdg-open >/dev/null 2>&1; then
+      xdg-open "https://github.com/settings/keys"
+    else
+      echo "--> Could not automatically open browser. Please navigate to https://github.com/settings/keys"
+    fi
+    echo "--> Press any key to continue after adding the key to GitHub."
+    read -n 1 -r
+    ;;
+  *)
+    echo "--> Skipping SSH key generation."
+    ;;
+esac
+
 ## install homebrew
 prompt_action "Install Homebrew (https://brew.sh)"
 case "$REPLY" in
@@ -207,7 +254,6 @@ case "$REPLY" in
   y|Y)
     echo "--> Installing uv..."
     curl -LsSf https://astral.sh/uv/install.sh | sh
-    uv python install --global
     ;;
   c|C)
     echo "--> The command to be run is:"
@@ -224,7 +270,7 @@ prompt_action "Install Google Cloud SDK"
 case "$REPLY" in
   y|Y)
     echo "--> Installing Google Cloud SDK..."
-    brew install --cask google-cloud-sdk # should this be via brew?
+    brew install --cask google-cloud-sdk
     ;;
   *)
     echo "--> Skipping Google Cloud SDK installation."
