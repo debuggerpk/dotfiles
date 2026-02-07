@@ -1,7 +1,7 @@
 echo "zsh: preparing ..."
 # global variables
 export CLICOLOR=1
-export CLOUDSDK_PYTHON='/usr/bin/python3'
+# export CLOUDSDK_PYTHON='/usr/bin/python3'
 export KEYTIMEOUT=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 export EDITOR=hx
@@ -149,3 +149,12 @@ export PATH="/Users/ysf/.antigravity/antigravity/bin:$PATH"
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/ysf/.lmstudio/bin"
 # End of LM Studio CLI section
+
+# opencode
+export PATH=/Users/ysf/.opencode/bin:$PATH
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/ysf/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/ysf/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/ysf/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ysf/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
